@@ -2,12 +2,7 @@ package cisc191.sdmesa.edu;
 
 /**
  * Lead Author(s):
- * @author 
- * @author 
- * <<add additional lead authors here, with a full first and last name>>
- * 
- * Other contributors:
- * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
+ * @author Shaun Stephenson
  * 
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
@@ -15,7 +10,7 @@ package cisc191.sdmesa.edu;
  * 
  * <<add more references here>>
  *  
- * Version/date: 
+ * Version/date: 1.0/11-02-2025
  * 
  * Responsibilities of class:
  * 
@@ -37,7 +32,10 @@ public class CheckoutBill
 	 */
 	public void setBillAmount(double billAmount) throws IllegalArgumentException
 	{
-		// TODO
+		if (billAmount <= 0) {
+			throw new IllegalArgumentException();
+		}
+		this.amount = billAmount;
 	}
 
 	/**
@@ -48,7 +46,10 @@ public class CheckoutBill
 	 */
 	public void setTipPercent(double percent) throws IllegalArgumentException
 	{
-		// TODO
+		if (percent < 0) {
+			throw new IllegalArgumentException();
+		}
+		this.tipPercent = percent;
 	}
 
 	/**
@@ -58,20 +59,22 @@ public class CheckoutBill
 	 */
 	public double calculateTotalBill() throws IllegalStateException
 	{
-		// TODO
+		if (amount <= 0 || tipPercent < 0) {
+			throw new IllegalStateException();
+		}
 		
 		return amount * (1 + tipPercent / 100);
 	}
 
 	public static void main(String[] args)
 	{
-		// TODO: prevent the program from crashing from (almost) any exception
-		
-		CheckoutBill bill = new CheckoutBill();
-		bill.setTipPercent(-1); 
-		bill.calculateTotalBill();
-		
-		// TODO: Print out any error messages to user
+		try {
+			CheckoutBill bill = new CheckoutBill();
+			bill.setTipPercent(-1); 
+			bill.calculateTotalBill();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 }

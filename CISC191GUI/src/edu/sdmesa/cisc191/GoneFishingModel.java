@@ -2,10 +2,19 @@ package edu.sdmesa.cisc191;
 
 /**
  * Lead Author(s):
- * @author Tasha Frankie
- * @author Allan Schougaard
+ * @author Shaun Stephenson
  * 
- * Responsibilities of class:
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * 
+ * Oracle Corporation. (n.d.). Java Random Class Documentation.
+ * Retrieved from https://docs.oracle.com/javase/8/docs/api/java/util/Random.html
+ * 
+ * Oracle Corporation. (n.d.). Java Arrays Documentation.
+ * Retrieved from https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html
+ * 
+ * Responsibilities of class: Tracks the game state and logic
  * 
  * Model and track the non-visual game play
  */

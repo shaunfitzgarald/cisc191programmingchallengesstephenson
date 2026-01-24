@@ -1,13 +1,11 @@
 package cisc191.sdmesa.edu;
 
+import java.awt.Color;
+
 /**
  * Lead Author(s):
- * @author 
- * @author 
- * <<add additional lead authors here, with a full first and last name>>
+ * @author Shaun Stephenson
  * 
- * Other contributors:
- * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
  * 
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
@@ -15,16 +13,40 @@ package cisc191.sdmesa.edu;
  * 
  * <<add more references here>>
  *  
- * Version/date: 
+ * Version/date: 1.0/06-10-2025
  * 
  * Responsibilities of class:
- * A a Bicycle is a Cycle with two wheels
+ * A Bicycle is a Cycle with two wheels
+ * 
  */
 
-// TODO: Implement and comment all IS-A (inheritance) and IS (implements) relationships separately
-
-public class Bicycle
+// IS-A relationship: Bicycle extends Cycle
+public class Bicycle extends Cycle
 {
-	// TODO: Implement and comment HAS-A relationships separately
+	// HAS-A relationship: A Bicycle has-a color
+	private Color color;
+	
+	// TODO: Consider adding gear functionality
+	
+	public Bicycle(String newMake)
+	{
+		super(newMake);
+	}
 
+	@Override
+	public int getNumberOfWheels()
+	{
+		return 2;
+	}
+
+	@Override
+	public Color getColor()
+	{
+		return color;
+	}
+
+	@Override
+	public void setColor(Color newColor) {
+		this.color = newColor;
+	}
 }

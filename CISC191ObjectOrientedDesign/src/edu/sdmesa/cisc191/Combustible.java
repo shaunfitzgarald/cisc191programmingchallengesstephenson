@@ -14,19 +14,20 @@ package edu.sdmesa.cisc191;
  * Version/date: 1.0/10-13-2025
  * 
  * Responsibilities of class:
- * Interface for objects that can be charged (like electric vehicles)
+ * Interface for objects that can use combustible fuel (like gas vehicles)
  */
-public interface Chargeable
+public interface Combustible
 {
 	/**
-	 * Gets the current battery charge level
-	 * @return the battery charge level (0-100)
+	 * Gets the current fuel level
+	 * @return the fuel level (0-50)
 	 */
-	int getBatteryCharge();
+	int getFuelLevel();
 	
 	/**
-	 * Charges up the battery by the specified amount
-	 * @param amount the amount to charge (will not exceed 100)
+	 * Adds fuel to the tank
+	 * @param amount the amount of fuel to add (will not exceed 50)
 	 */
-	void chargeUp(int amount);
+	void addFuel(int amount);
 }
+

@@ -2,12 +2,7 @@ package cisc191.sdmesa.edu;
 
 /**
  * Lead Author(s):
- * @author 
- * @author 
- * <<add additional lead authors here, with a full first and last name>>
- * 
- * Other contributors:
- * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
+ * @author Shaun Stephenson
  * 
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
@@ -15,7 +10,7 @@ package cisc191.sdmesa.edu;
  * 
  * <<add more references here>>
  *  
- * Version/date: 
+ * Version/date: 1.0/11-02-2025
  * 
  * Responsibilities of class:
  * 
@@ -42,9 +37,12 @@ public class BankAccount
 	 * @param amount to deposit
 	 * @throws InvalidAmountException is thrown if amount is not positive
 	 */
-	public void deposit(double amount)
+	public void deposit(double amount) throws InvalidAmountException
 	{
-		// TODO
+		if (amount <= 0) {
+			throw new InvalidAmountException(amount);
+		}
+		balance += amount;
 	}
 
 	/**
@@ -55,9 +53,15 @@ public class BankAccount
 	 * @throws InsufficientFundsException is thrown if there is not enough funds in
 	 *                                    the account to make the withdrawal
 	 */
-	public void withdraw(double amount)
+	public void withdraw(double amount) throws Exception
 	{
-		// TODO
+		if (amount <= 0) {
+			throw new InvalidAmountException(amount);
+		}
+		if (amount > balance) {
+			throw new InsufficientFundsException(amount, balance);
+		}
+		balance -= amount;
 	}
 
 	/**
@@ -66,16 +70,24 @@ public class BankAccount
 	 * @return the amount actually withdrawn
 	 * @throws InvalidAmountException     is thrown if amount is not positive
 	 */
-	public double withdrawAsPossible(double requestAmount)
+	public double withdrawAsMuchPossible(double requestAmount) throws InvalidAmountException
 	{
-		// TODO:
+		if (requestAmount <= 0) {
+			throw new InvalidAmountException(requestAmount);
+		}
+		
 		// Try to withdraw the requested amount
-		
-		withdraw(requestAmount);
-		
-		// If it fails, get as much as possible
-		
-		return -1;
+		try {
+			withdraw(requestAmount);
+			return requestAmount;
+		} catch (Exception e) {
+			// If it fails, get as much as possible
+			double amountWithdrawn = balance;
+			if (balance > 0) {
+				balance = 0;
+			}
+			return amountWithdrawn;
+		}
 	}
 
 }

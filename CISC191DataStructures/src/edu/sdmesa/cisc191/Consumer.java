@@ -4,7 +4,7 @@ public interface Consumer<Item>
 {
 	/**
 	 * Consumes an element from the collection 
-	 * by removing an element that was previously produced by a Producer.
+	 * by removing a element that was previously produced by a Producer
 	 * @return the consumed element
 	 */
 	public Item consume();

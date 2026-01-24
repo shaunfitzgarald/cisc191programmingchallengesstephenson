@@ -4,29 +4,20 @@ import java.awt.Color;
 
 /**
  * Lead Author(s):
+ * @author Shaun Stephenson
  * @author 
- * @author 
- * <<add additional lead authors here, with a full first and last name>>
- * 
- * Other contributors:
- * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
  * 
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
  * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
- * <<add more references here>>
  *  
- * Version/date: 
+ * Version/date: 1.0/06-10-2025
  * 
  * Responsibilities of class:
  * 
  */
-/**
- * Only change sections that are marked with TODO
- */
 
-//TODO: Implement and comment all IS-A (inheritance) relationships
 
 public abstract class Cycle
 {
@@ -35,14 +26,19 @@ public abstract class Cycle
 	// A cycle has a unique frame number, that is *immutable*;
 	// How are you going to make it immutable, so that it only gets one final number? 
 	// (Hint: did you see the hint?)
-	private int frameNumber;
+	private final int frameNumber;
 	
 	// A cycle has a make, that is immutable
-	// TODO:
+	private final String make;
+	
+	// Static variable to track the next available frame number
+	private static int nextFrameNumber = 1;
+	
 	
 	public Cycle(String newMake)
 	{
-		// TODO
+		this.make = newMake;
+		this.frameNumber = nextFrameNumber++;
 	}
 
 	abstract int getNumberOfWheels();
@@ -66,8 +62,7 @@ public abstract class Cycle
 	 */
 	public String getMake()
 	{
-		// TODO
-		return null;
+		return make;
 	}
 	
 	/**
@@ -77,30 +72,39 @@ public abstract class Cycle
 	 */
 	public int getFrameNumber()
 	{
-		// TODO
-		return -1;
+		return frameNumber;
 	}
 	
 	/**
 	 *  @return true if the frame number are the same
 	 */
-//	@Override
-//	public boolean equals(Object other)
-//	{
-//		// TODO: 
-//		// Hint: use instanceof
-//		// See: https://www.sitepoint.com/implement-javas-equals-method-correctly/
-//		return false;
-//	}
+	@Override
+	public boolean equals(Object other)
+	{
+		// Check if the object is the same reference
+		if (this == other)
+		{
+			return true;
+		}
+		
+		// Check if the object is null or not an instance of Cycle
+		if (other == null || !(other instanceof Cycle))
+		{
+			return false;
+		}
+		
+		// Cast to Cycle and compare frame numbers
+		Cycle otherCycle = (Cycle) other;
+		return this.frameNumber == otherCycle.frameNumber;
+	}
 	
 	/**
 	 * @return String describing the object, including type, make and frame number
 	 */
-//	@Override
-//	public String toString()
-//	{
-//		//TODO:
-//		return "Hello, I'm a Cycle";
-//	}
+	@Override
+	public String toString()
+	{
+		return make + " (" + frameNumber + ")";
+	}
 
 }

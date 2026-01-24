@@ -2,34 +2,43 @@ package edu.sdmesa.cisc191;
 /**
  * Lead Author(s):
  * 
- * @author
- * @author
- *         <<add additional lead authors here, with a full first and last name>>
- * 
- * Other contributors:
- *         <<add additional contributors (mentors, tutors, friends) here, with
- *         contact information>>
+ * @author Shaun Stephenson
  * 
  * References:
- *         Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
- *         Retrieved from
- *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
- *         <<add more references here>>
+ * GeeksforGeeks. (n.d.). Recursion in Java. GeeksforGeeks.
+ * Retrieved from https://www.geeksforgeeks.org/recursion-in-java/
  * 
- * Version/date:
+ * GeeksforGeeks. (n.d.). Tree Traversals (Inorder, Preorder and Postorder). GeeksforGeeks.
+ * Retrieved from https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+ * 
+ * GeeksforGeeks. (n.d.). Binary Search Tree. GeeksforGeeks.
+ * Retrieved from https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+ * 
+ * Cornell University. (n.d.). Developing a Recursive Method. CS Department, Cornell University.
+ * Retrieved from https://www.cs.cornell.edu/courses/JavaAndDS/files/recursionDev.pdf
+ * 
+ * Wikipedia contributors. (n.d.). Tree traversal. Wikipedia, The Free Encyclopedia.
+ * Retrieved from https://en.wikipedia.org/wiki/Tree_traversal
+ * 
+ * 
+ * Version/date: 1.0/11-17-2025
  * 
  * Responsibilities of class:
- * 
+ * This class is responsible for storing a name and its left and right nodes.
  */
 public class NameNode
 {
-	// TODO: A NameNode has-a left node
+	// A NameNode has-a left node
+	private NameNode left;
 	
 	// A NameNode has-a name
 	private String name;
 	
-	// TODO: A NameNode has-a right node
+	// A NameNode has-a right node
+	private NameNode right;
 	
 
 	/**
@@ -38,8 +47,10 @@ public class NameNode
 	 */
 	public NameNode(String newName)
 	{
-		// TODO: store newName in node;
-		
+		// Store newName in node
+		this.name = newName;
+		this.left = null;
+		this.right = null;
 	}
 	
 	/**
@@ -48,8 +59,7 @@ public class NameNode
 	 */
 	public String getName()
 	{
-		// TODO:
-		return null;
+		return name;
 	}
 	
 	/**
@@ -58,8 +68,7 @@ public class NameNode
 	 */
 	public void setLeft(NameNode newLeft)
 	{
-		// TODO:
-		
+		this.left = newLeft;
 	}
 	
 	/**
@@ -68,8 +77,7 @@ public class NameNode
 	 */
 	public void setRight(NameNode newRight)
 	{
-		// TODO:
-		
+		this.right = newRight;
 	}
 	
 	/**
@@ -78,8 +86,7 @@ public class NameNode
 	 */
 	public NameNode getLeft()
 	{
-		// TODO:
-		return null;
+		return left;
 	}
 	
 	/**
@@ -88,8 +95,7 @@ public class NameNode
 	 */
 	public NameNode getRight()
 	{
-		// TODO:
-		return null;
+		return right;
 	}
 	
 	/**
@@ -98,8 +104,15 @@ public class NameNode
 	 */
 	public String getFirstName()
 	{
-		// TODO:
-		return null;
+		// The first name is the leftmost node (smallest in alphabetical order)
+		if (left == null)
+		{
+			return name;
+		}
+		else
+		{
+			return left.getFirstName();
+		}
 	}
 	
 	/**
@@ -108,8 +121,15 @@ public class NameNode
 	 */
 	public String getLastName()
 	{
-		// TODO:
-		return null;
+		// The last name is the rightmost node (largest in alphabetical order)
+		if (right == null)
+		{
+			return name;
+		}
+		else
+		{
+			return right.getLastName();
+		}
 	}
 
 	/**
@@ -124,13 +144,29 @@ public class NameNode
 
 		if (newName.compareTo(name) < 0)
 		{
-			// TODO: insert newName on the left or right?
+			// Insert newName on the left (comes before current name alphabetically)
+			if (left == null)
+			{
+				left = new NameNode(newName);
+			}
+			else
+			{
+				left.insert(newName);
+			}
 		}
 		else if (newName.compareTo(name) > 0)
 		{
-			// TODO: insert newName on the left or right?
+			// Insert newName on the right (comes after current name alphabetically)
+			if (right == null)
+			{
+				right = new NameNode(newName);
+			}
+			else
+			{
+				right.insert(newName);
+			}
 		}
-		// else ???
+		// else: if newName equals name, do nothing (duplicate)
 
 	}
 
@@ -141,9 +177,17 @@ public class NameNode
 	{
 		String returnValue = "";
 
-		// TODO: in-order traverse tree recursively:
+		// In-order traverse tree recursively:
 		// traverse and add left subtree, then add this, then traverse and add right subtree
-		// Warning: Minds have been blown during the implementation of this method...
+		if (left != null)
+		{
+			returnValue += left.toString();
+		}
+		returnValue += name;
+		if (right != null)
+		{
+			returnValue += right.toString();
+		}
 
 		return returnValue;
 	}
